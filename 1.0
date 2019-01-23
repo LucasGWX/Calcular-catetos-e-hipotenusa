@@ -1,0 +1,64 @@
+#include "pch.h"
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+float altera(float &cto, float &cta, float &hip, int decisao)
+{
+	switch (decisao) {
+	case  1:
+		cout << "\n\t>>> Calculando o Cateto Oposto: \n\t";
+		cout << "\n\tDigite o valor do Cateto Adjacente: \n\t" << endl;
+		cin >> cta;
+		cout << "\n\tDigite o valor da Hipotenusa: \n\t" << endl;
+		cin >> hip;
+		cto = sqrt(pow(hip, 2) - pow(cta, 2));	
+		break;
+	case 2:
+		cout << "\n\t>>> Calculando o Cateto Adjacente: ";
+		cout << "\n\tDigite o valor do Cateto Oposto: \n\t";
+		cin >> cto;
+		cout << "\n\tDigite o valor da Hipotenusa: \n\t";
+		cin >> hip;
+		cta = sqrt(pow(hip, 2) - pow(cto, 2));
+		break;
+	case 3:
+		cout << "\n\t>>> Calculando a Hipoenusa: \n";
+		cout << "\n\tDigite o valor do Cateto Oposto: \n\t";
+		cin >> cto;
+		cout << "\n\tDigite o valor do Cateto Adjacente: \n\t";
+		cin >> cta;
+		hip = sqrt(pow(cto, 2) + pow(cta, 2));
+		break;
+	};
+	return 0;
+};
+
+int main(void) {
+	float hip = 0, cto = 0, cta = 0, decisao, opcao, espera;
+	int casenot;
+	do {
+		do {
+			cout << "\t#########################################################################################";
+			cout << "\n\n\t    Vamos calcular o cateto oposto, adjacente ou hipotenusa de um triangulo retangulo! \n\n";
+			cout << "\t-----------------------------------------------------------------------------------------";
+			cout << "\n\t *A Hipotenusa NUNCA pode ser menor ou igual a um dos catetos!, pois impossiblitaria que \n\to cateto a ser encontrado proporcionasse angulo entre as arestas que somem 180 graus";
+
+			decisao = 0;
+			cout << "\n\n\tQual valor deseja encontar?\t(Use apenas numeros!) \n\n\t[ 1 ] Cateto Oposto\n\t[ 2 ] Cateto Adjacente\n\t[ 3 ] Hipotenusa\n\n\t";
+			cin >> decisao;
+			if (decisao != 1 && decisao != 2 && decisao != 3 && decisao) {
+				cout << "\n\tAlternativa Invalida! tente novamente.";
+				Sleep(1000);
+				system("cls");
+			}
+		} while (decisao != 1 && decisao != 2 && decisao != 3);
+
+		altera(cto, cta, hip, decisao);
+		cout << "\n\tHipontenusa = \t\t" << hip << "\n\tCateto Oposto = \t" << cto << "\n\tCaTeto Adjacente = \t" << cta << "\n\n";
+		cout << "\n\tDeseja calcular novamente ? \n\t[ 1 ] YES \t [ 2 ] NO \n\t";
+		cin >> opcao;
+	}while (opcao == 1);
+	system("pause");
+	return 0;
+};
